@@ -43,9 +43,22 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-
-    return 1;
+int is_valid(Node* n) {
+   int row[9][9] = {0};
+   int col[9][9] = {0};
+   int box[9][9] = {0};
+   for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
+         if (n->sudo[i][j] != 0) {
+            int num = n->sudo[i][j] - 1;
+               int k = (i / 3) * 3 + j / 3;
+               if (row[i][num] || col[j][num] || box[k][num])//descubrir como funciona el k (ia maldita)
+               return 0;
+               row[i][num] = col[j][num] = box[k][num] = 1;
+            }
+        }
+    }
+   return 1;
 }
 
 //9x9
