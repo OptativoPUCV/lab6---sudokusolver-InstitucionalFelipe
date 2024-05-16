@@ -48,10 +48,26 @@ int is_valid(Node* n){
     return 1;
 }
 
-
-List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+//9x9
+List* get_adj_nodes(Node* n) {
+    List* list = createList();
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (n->sudo[i][j] == 0) { // Si hay un cero en la posición (i, j)
+                for (int num = 1; num <= 9; num++) {
+                    Node* new_node = copy(n);
+                    new_node->sudo[i][j] = num;
+                    if (is_valid(new_node)) {//prueba con todos los numeros de 1 a 9 y ve si es valido
+                        pushBack(list, new_node);
+                    } else {
+                        free(new_node); 
+                    }
+                }
+                return list; 
+            }
+        }
+    }
+    return list; 
 }
 
 
