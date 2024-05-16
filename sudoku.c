@@ -51,8 +51,8 @@ int is_valid(Node* n) {
       for (int j = 0; j < 9; j++) {
          if (n->sudo[i][j] != 0) {
             int num = n->sudo[i][j] - 1;
-               int k = (i / 3) * 3 + j / 3;
-               if (row[i][num] || col[j][num] || box[k][num])//descubrir como funciona el k (ia maldita)
+               int k = (i / 3) * 3 + j / 3;// k es el indice de la caja
+               if (row[i][num] || col[j][num] || box[k][num])//Se verifica si el número num ya está presente en la fila i, la columna j o el cuadro 3x3 al que pertenece la celda (i, j)
                return 0;
                row[i][num] = col[j][num] = box[k][num] = 1;
             }
